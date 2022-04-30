@@ -12,73 +12,45 @@ Product.init(
   {
 
     id:{
-
-    type: DataTypes.INTEGER,
-
-    allowNull: false,
-
-    primaryKey: true,
-
-    autoIncrement: true
-
-  },
-  
-  product_name: {
-    type: DataTypes.STRING,
-
-    
-    allowNull: false
-  },
-  
-  price: {
-
-      //Decimal
-      type: DataTypes.DECIMAL,
-
-      //Doesn't allow null values
+      type: DataTypes.INTEGER,
       allowNull: false,
-
-      //Validates that the value is a decimal
-      validate: {
+      primaryKey: true,
+      autoIncrement: true
+   },
+  
+    product_name: {
+      type: DataTypes.STRING,
+      allowNull: false
+   },
+  
+     price: {
+       type: DataTypes.DECIMAL,
+       allowNull: false,
+       validate: {
         isDecimal: true
         
       }
-
-
   },
 
     stock: {
-
-    //Integer
-    type: DataTypes.STRING,
-
-    //Doesn't allow null values
-    allowNull: false,
-    defaultValue: 10,
-    //Set a default value of 10
-    //Validates that the value is numeric
-    validate: {
-      isNumeric: true,
+       type: DataTypes.INTEGER,
+       allowNull: false,
+       defaultValue: 10,
+       validate: {
+       isNumeric: true,
     
-        }
-   
-  
-  },
-     category_id: {
+      }
+    },
 
-    //Integer
-    type: DataTypes.INTEGER,
-    allowNull: true,
-    //References the category model's id
-   
-      references: {
+     category_id: {
+       type: DataTypes.INTEGER,
+       allowNull: true,
+       references: {
         model: 'category',
         key: 'id'
       }
     }
-    ///info from 13.3.4 on how to 'reference' 
-
-     
+       
   },
   {
     sequelize,
