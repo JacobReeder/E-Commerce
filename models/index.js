@@ -5,15 +5,30 @@ const Tag = require('./Tag');
 const ProductTag = require('./ProductTag');
 
 
-///TODO: 13.3.5 explains 'associations', use to solve below
 
-// Products belongsTo Category
 
-// Categories have many Products
+Product.belongsTo(Category, {
+    foreignKey: 'category_id'
+})
+
+
+Category.hasMany(Product, {
+  foreignKey: 'category_id'
+})
 
 // Products belongToMany Tags (through ProductTag)
+Product.belongsToMany(Tag, {
+  through: ProductTag,
+  as: 'productTag',
+   foreignKey: 'product_id'
+})
 
 // Tags belongToMany Products (through ProductTag)
+Tag.belongsToMany(Product, {
+  through: ProductTag,
+  as: 'productTag',
+  foreignKey: 'tag_id'
+})
 
 module.exports = {
   Product,
@@ -21,3 +36,12 @@ module.exports = {
   Tag,
   ProductTag,
 };
+
+
+//////product_name
+/////category_name
+/////category_id
+
+/////From ProductTag
+/////product_id
+/////tag_name
